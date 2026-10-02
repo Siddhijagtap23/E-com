@@ -174,12 +174,26 @@ Comprehensive engineering documents are located in the [`docs/`](./docs/) direct
 
 | Document | Purpose |
 | :--- | :--- |
+| [**Team Task Assignments**](./docs/TEAM_TASK_ASSIGNMENTS.md) | Work distribution, roles, checklists, and GitHub issues for all 4 team members. |
 | [**Architecture Guide**](./docs/ARCHITECTURE.md) | High-level system topology, middleware design, security model, and transaction boundaries. |
 | [**Database Design**](./docs/DATABASE_DESIGN.md) | Complete schemas for User, Category, Product, Order with validation rules and sample JSON data. |
 | [**API Documentation**](./docs/API_DOCUMENTATION.md) | Exhaustive REST API contract with parameters, request/response formats, and error codes. |
 | [**Admin Guide**](./docs/ADMIN_GUIDE.md) | Specification for admin features, UI layouts, status workflows, and inventory tracking. |
 | [**User Workflow**](./docs/USER_WORKFLOW.md) | End-to-end customer journey from discovery and search to cart management, checkout, and tracking. |
 | [**Setup & Deployment**](./docs/SETUP_AND_DEPLOYMENT.md) | Step-by-step instructions to run MongoDB, Node.js server, React frontend, and database seeding. |
+
+---
+
+## 👥 Team & Task Assignments
+
+| Member | Role | Assigned GitHub Issue | Status |
+| :--- | :--- | :--- | :---: |
+| **Siddhi Jagtap** (`@Siddhijagtap23`) | **Project Lead**, Core Architecture, Security & E2E Integration | [**Issue #4**](https://github.com/Siddhijagtap23/E-com/issues/4) | Assigned |
+| **Sakshi Vavale** (`@sakshivavale`) | **Backend Lead**, MongoDB Models & REST APIs | [**Issue #1**](https://github.com/Siddhijagtap23/E-com/issues/1) | Assigned |
+| **Sejal** (`@sejalnverse`) | **Frontend Lead**, Public Storefront, Catalog & Product Discovery | [**Issue #2**](https://github.com/Siddhijagtap23/E-com/issues/2) | Assigned |
+| **Harsh Walke** (`@HarshSWalke`) | **Admin & Cart Lead**, Cart, Checkout, Order Tracking & Admin Panel | [**Issue #3**](https://github.com/Siddhijagtap23/E-com/issues/3) | Assigned |
+
+> See [**`docs/TEAM_TASK_ASSIGNMENTS.md`**](./docs/TEAM_TASK_ASSIGNMENTS.md) for the full responsibility matrix and checklists.
 
 ---
 
