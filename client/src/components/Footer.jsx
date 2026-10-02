@@ -1,52 +1,43 @@
-import React from 'react';
-import { ShoppingBag, Heart, ShieldCheck, Truck, RotateCcw } from 'lucide-react';
-
-const Footer = () => {
+function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300 border-t border-gray-800 mt-auto">
-      {/* Value Proposition Strip */}
-      <div className="border-b border-gray-800 bg-gray-950/40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left">
-            <div className="flex items-center justify-center md:justify-start space-x-3">
-              <Truck className="w-8 h-8 text-blue-500 flex-shrink-0" />
-              <div>
-                <h4 className="text-sm font-semibold text-white">Cash on Delivery</h4>
-                <p className="text-xs text-gray-400">Pay safely when your package arrives at your doorstep</p>
-              </div>
-            </div>
-            <div className="flex items-center justify-center md:justify-start space-x-3">
-              <ShieldCheck className="w-8 h-8 text-emerald-500 flex-shrink-0" />
-              <div>
-                <h4 className="text-sm font-semibold text-white">Guaranteed Quality</h4>
-                <p className="text-xs text-gray-400">100% authentic curated catalog items</p>
-              </div>
-            </div>
-            <div className="flex items-center justify-center md:justify-start space-x-3">
-              <RotateCcw className="w-8 h-8 text-indigo-500 flex-shrink-0" />
-              <div>
-                <h4 className="text-sm font-semibold text-white">Fast Dispatch</h4>
-                <p className="text-xs text-gray-400">Orders confirmed & processed swiftly</p>
-              </div>
+    <footer className="mt-16 bg-gray-900 px-6 py-10 text-white">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-8 sm:grid-cols-3">
+          
+          <div>
+            <h2 className="text-xl font-bold">E-Commerce</h2>
+            <p className="mt-2 text-sm text-gray-400">
+              Shop quality products at your convenience.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold">Quick Links</h3>
+            <div className="mt-3 space-y-2 text-sm text-gray-400">
+              <p>Home</p>
+              <p>Products</p>
+              <p>Login</p>
+              <p>Register</p>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Bottom Copyright */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400">
-        <div className="flex items-center space-x-2">
-          <ShoppingBag className="w-4 h-4 text-blue-500" />
-          <span>&copy; 2026 MiniShop. MERN Stack Mini E-Commerce Demo.</span>
+          <div>
+            <h3 className="font-semibold">Categories</h3>
+            <div className="mt-3 space-y-2 text-sm text-gray-400">
+              <p>Electronics</p>
+              <p>Fashion</p>
+              <p>Shoes</p>
+            </div>
+          </div>
+
         </div>
-        <div className="flex items-center space-x-1 mt-3 sm:mt-0">
-          <span>Built with</span>
-          <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
-          <span>using React, Tailwind CSS, Express & MongoDB</span>
+
+        <div className="mt-8 border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
+          © 2026 E-Commerce. All rights reserved.
         </div>
       </div>
     </footer>
   );
-};
+}
 
 export default Footer;

@@ -1,56 +1,89 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import { createContext, useContext, useState } from "react";
+import api from "../api/api";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem("user");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
 
-  useEffect(() => {
+  const [loading, setLoading] = useState(false);
+
+  const login = async (email, password) => {
+    setLoading(true);
+
     try {
-      const storedToken = localStorage.getItem('token');
-      const storedUser = localStorage.getItem('user');
+      const response = await api.post("/auth/login", {
+        email,
+        password,
+      });
 
-      if (storedToken && storedUser) {
-        setToken(storedToken);
-        setUser(JSON.parse(storedUser));
-      }
+      const { token, user } = response.data;
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      setUser(user);
+
+      return { success: true };
     } catch (error) {
-      console.error('Error loading stored auth session:', error);
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
+      return {
+        success: false,
+        message:
+          error.response?.data?.message || "Login failed. Please try again.",
+      };
     } finally {
       setLoading(false);
     }
-  }, []);
+  };
 
-  const login = (userData, authToken) => {
-    setUser(userData);
-    setToken(authToken);
-    localStorage.setItem('user', JSON.stringify(userData));
-    localStorage.setItem('token', authToken);
+  const register = async (name, email, password, confirmPassword) => {
+    setLoading(true);
+
+    try {
+      const response = await api.post("/auth/register", {
+        name,
+        email,
+        password,
+        confirmPassword,
+      });
+
+      const { token, user } = response.data;
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      setUser(user);
+
+      return { success: true };
+    } catch (error) {
+      return {
+        success: false,
+        message:
+          error.response?.data?.message ||
+          "Registration failed. Please try again.",
+      };
+    } finally {
+      setLoading(false);
+    }
   };
 
   const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setUser(null);
-    setToken(null);
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
   };
-
-  const isAdmin = user?.role === 'admin';
 
   return (
     <AuthContext.Provider
       value={{
         user,
-        token,
         loading,
         login,
+        register,
         logout,
-        isAdmin,
-        isAuthenticated: !!token
       }}
     >
       {children}
@@ -59,9 +92,5 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
+  return useContext(AuthContext);
 };

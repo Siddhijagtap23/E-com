@@ -1,79 +1,30 @@
-import React from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import ProtectedRoute from './components/ProtectedRoute';
-import AdminRoute from './components/AdminRoute';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Footer from "./components/Footer";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Products from "./pages/Products";
 
-// Public Pages
-import Home from './pages/public/Home';
-import Products from './pages/public/Products';
-import ProductDetails from './pages/public/ProductDetails';
-import Cart from './pages/public/Cart';
-import Checkout from './pages/public/Checkout';
-import Login from './pages/public/Login';
-import Register from './pages/public/Register';
-import MyOrders from './pages/public/MyOrders';
-
-// Admin Page
-import AdminDashboard from './pages/admin/AdminDashboard';
+function ProductDetails() {
+  return <h1>Product Details Page</h1>;
+}
 
 function App() {
-  const location = useLocation();
-  const isAdminRoute = location.pathname.startsWith('/admin');
-
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Show Public Navbar only on public storefront routes */}
-      {!isAdminRoute && <Navbar />}
+    <BrowserRouter>
+      <Navbar />
 
-      {/* Main Page Routing */}
-      <main className="flex-1">
-        <Routes>
-          {/* Public Storefront Routes */}
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:id" element={<ProductDetails />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
+      </Routes>
 
-          {/* Protected Customer Routes */}
-          <Route
-            path="/checkout"
-            element={
-              <ProtectedRoute>
-                <Checkout />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/my-orders"
-            element={
-              <ProtectedRoute>
-                <MyOrders />
-              </ProtectedRoute>
-            }
-          />
-
-          {/* Protected Admin Routes */}
-          <Route
-            path="/admin/*"
-            element={
-              <AdminRoute>
-                <AdminDashboard />
-              </AdminRoute>
-            }
-          />
-
-          {/* Fallback */}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </main>
-
-      {/* Show Public Footer only on public storefront routes */}
-      {!isAdminRoute && <Footer />}
-    </div>
+      <Footer />
+    </BrowserRouter>
   );
 }
 
